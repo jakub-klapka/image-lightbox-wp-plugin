@@ -1,4 +1,4 @@
-Lumiart's Lightweight Lightboxed Images
+Lightboxed Images WP Plugin
 ===
 This plugin is another way, how to insert images into your posts, which opens in lightbox.
 It's focused primarily on theme developers (thus tons of configuration via filters) and speed.
