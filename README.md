@@ -6,6 +6,8 @@ It's focused primarily on theme developers (thus tons of configuration via filte
 What does it do?
 ---
 
+![Lightbox checkbox preview](https://raw.githubusercontent.com/jakub-klapka/image-lightbox-wp-plugin/master/src/lumi-image-fancybox_screen1.png)
+
  - New `Lightbox` checkbox in Add Media dialog to insert image opened in lightbox.
  - Supports also WP-generated galleries (`[gallery]`)
  - Based on great [Fancybox](http://fancyapps.com/fancybox/) library by Jānis Skarnelis
@@ -44,7 +46,7 @@ This WP-image-size will be used as lightbox target for images. By default, it wi
 
 *Default: __('Lightbox')*
 
-Text as title in front of checkbox in Add Media dialog. I recommend wraping text in i18n function, to keep it translatable. For example:
+Text as title in front of checkbox in Add Media dialog. I recommend wrapping text in i18n function, to keep it translatable. For example:
 
     add_filter( 'lumi-image-fancybox/upload_dialog_lightbox_title', function() {
         return __( 'My customized title', 'My textdomain' );
@@ -54,7 +56,7 @@ Text as title in front of checkbox in Add Media dialog. I recommend wraping text
 
 ###lumi-image-fancybox/upload_dialog_help_message
 
-*Default: __( 'If checked, click on image will open it in overlay window. Dont't forget to set size and aligment below.' )*
+*Default: __( 'If checked, click on image will open it in overlay window. Don't forget to set size and alignment below.' )*
 
 Same as above for helper text below checkbox.
 
@@ -64,7 +66,7 @@ Same as above for helper text below checkbox.
 
 *Default: jquery*
 
-Lightbox effect is depending on jQuery library. But if you have jquery included in some other script (maybe you Grunting frontend scripts?), you can pass yout script handle into this filter and plugin will assume, that jquery is loaded with specified script and won't initiate loading of separate jquery library.
+Lightbox effect is depending on jQuery library. But if you have jquery included in some other script (maybe you Grunting frontend scripts?), you can pass your script handle into this filter and plugin will assume, that jquery is loaded with specified script and won't initiate loading of separate jquery library.
 
 ---
 
@@ -72,7 +74,7 @@ Lightbox effect is depending on jQuery library. But if you have jquery included 
 
 *Default: false*
 
-If you want to modify Lightbox behavior on frontend, you can pass array of parameter to this filter. You can find all available paramteres on [Fancybox site](http://fancyapps.com/fancybox/#docs). For example:
+If you want to modify Lightbox behavior on frontend, you can pass array of parameter to this filter. You can find all available parameters on [Fancybox site](http://fancyapps.com/fancybox/#docs). For example:
 
     add_filter( 'lumi-image-fancybox/fancybox_js_config', function() {
         return array(
@@ -87,4 +89,4 @@ Notes
 ---
 
  - Plugin won't affect existing single images in pages and posts, but It will affect all galleries if you leave plugins gallery feature enabled!
- - If your theme or another plugin copletely rewrite `[gallery]` output via `post_gallery` filter, this plugin won't work for galleries. Using `use_default_gallery_style` and `gallery_style` filters to change styles should be safe though.
+ - If your theme or another plugin completely rewrite `[gallery]` output via `post_gallery` filter, this plugin won't work for galleries. Using `use_default_gallery_style` and `gallery_style` filters to change styles should be safe though.
