@@ -43,7 +43,7 @@ class AdminModifications {
 			"label" => apply_filters( 'lumi-image-fancybox/upload_dialog_lightbox_title', __('Lightbox', LUMI_IFB_TEXTDOMAIN) ),
 			"input" => "html", // this is default if "input" is omitted
 			"html" => '<input type="checkbox"' . $checked . ' name="lumi-fancybox" />',
-			'helps' => apply_filters( 'lumi-image-fancybox/upload_dialog_help_message', __( 'If checked, click on image will open it in overlay window.<br>Dont\'t forget to set size and aligment below.', LUMI_IFB_TEXTDOMAIN ) )
+			'helps' => apply_filters( 'lumi-image-fancybox/upload_dialog_help_message', __( 'If checked, click on image will open it in overlay window.<br>Don\'t forget to set size and alignment below.', LUMI_IFB_TEXTDOMAIN ) )
 			//Při zaškrtnutí bude fotka zvětšena do vyskakovacího okna po kliknutí.<br>Nezapomeňte níže zvolit velikost a zarovnání
 		);
 		return $form_fields;
