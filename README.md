@@ -6,6 +6,8 @@ It's focused primarily on theme developers (thus tons of configuration via filte
 What does it do?
 ---
 
+![Lightbox checkbox preview](https://raw.githubusercontent.com/jakub-klapka/image-lightbox-wp-plugin/master/src/lumi-image-fancybox_screen1.png)
+
  - New `Lightbox` checkbox in Add Media dialog to insert image opened in lightbox.
  - Supports also WP-generated galleries (`[gallery]`)
  - Based on great [Fancybox](http://fancyapps.com/fancybox/) library by Jānis Skarnelis
