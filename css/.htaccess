@@ -1,0 +1,3 @@
+<Files *.css>
+	allow from all
+</Files>
