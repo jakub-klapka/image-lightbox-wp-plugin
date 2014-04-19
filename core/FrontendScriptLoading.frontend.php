@@ -11,10 +11,31 @@ class FrontendScriptLoading {
 	public function __construct()
 	{
 		add_action( 'wp', array( $this, 'check_for_fancybox' ) );
+		add_action( 'init', array( $this, 'check_for_filters_init' ) );
+		add_action( 'get_header', array( $this, 'check_for_filters_get_header' ) );
+	}
+
+	/**
+	 * Those checks are postponed, so theme can modify it's behavior via filters
+	 */
+	public function check_for_filters_init()
+	{
 		if( apply_filters( 'lumi-image-fancybox/enable_gallery', true ) ) {
 			add_action( 'wp', array( $this, 'check_for_gallery' ) );
 		}
 	}
+
+	/**
+	 * Postpone this filter as much as possible, so theme can run some own checks first
+	 */
+	public function check_for_filters_get_header()
+	{
+		if( apply_filters( 'lumi-image-fancybox/allways_load_frontend_script', false ) ) {
+			$this->load_frontend_script();
+		};
+	}
+
+
 
 	private function load_frontend_script()
 	{
