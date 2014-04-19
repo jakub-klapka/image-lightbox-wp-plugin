@@ -1,5 +1,7 @@
-Lightboxed Images WP Plugin
+Dev Friendly Lightboxed Images
 ===
+*by [Lumiart](http://www.lumiart.cz)*
+
 This plugin is another way, how to insert images into your posts, which opens in lightbox.
 It's focused primarily on theme developers (thus tons of configuration via filters) and speed.
 
@@ -12,7 +14,7 @@ What does it do?
  - Supports also WP-generated galleries (`[gallery]`)
  - Based on great [Fancybox](http://fancyapps.com/fancybox/) library by Jānis Skarnelis
  - Frontend files are loaded only, when they are necessary (no more thousand-script headers on frontend)
- - Also PHP files are loaded only when they are needed (to save server memory)
+ - Also various PHP files are loaded only when they are needed (to save server memory)
  - Plugin is very simple but still highly configurable via filters (no settings in DB - perfect for theme devs)
 
 Filters
