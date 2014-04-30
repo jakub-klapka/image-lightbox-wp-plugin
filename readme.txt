@@ -54,7 +54,7 @@ Will be added soon.
 
 == Developers ==
 
-Plugin developement continues on [Github](https://github.com/jakub-klapka/image-lightbox-wp-plugin), feel free to contribute there.
+Plugin development continues on [Github](https://github.com/jakub-klapka/image-lightbox-wp-plugin), feel free to contribute there.
 
 Plugin is ment to be configured primarily via filters:
 
