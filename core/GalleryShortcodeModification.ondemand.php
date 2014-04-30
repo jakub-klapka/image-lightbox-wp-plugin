@@ -6,12 +6,14 @@ namespace Lumi_IFB\OnDemand;
 
 class GalleryShortcodeModification {
 
-	public function __construct()
-	{
-		add_filter( 'post_gallery', array( $this, 'gallery_output' ), 8, 2 ); //higher priority, so theme can override that
+	public function __construct() {
+		add_filter( 'post_gallery', array(
+				$this,
+				'gallery_output'
+			), 8, 2 ); //higher priority, so theme can override that
 	}
 
-	public function gallery_output( $output, $attr ){
+	public function gallery_output( $output, $attr ) {
 
 		/**
 		 * Based on wp-includes/media.php
@@ -19,60 +21,84 @@ class GalleryShortcodeModification {
 		$post = get_post();
 
 		static $instance = 0;
-		$instance++;
+		$instance ++;
 
 		// We're trusting author input, so let's at least make sure it looks like a valid orderby statement
 		if ( isset( $attr['orderby'] ) ) {
 			$attr['orderby'] = sanitize_sql_orderby( $attr['orderby'] );
-			if ( !$attr['orderby'] )
+			if ( ! $attr['orderby'] ) {
 				unset( $attr['orderby'] );
+			}
 		}
 
 		$html5 = current_theme_supports( 'html5', 'gallery' );
-		extract(shortcode_atts(array(
+		extract( shortcode_atts( array(
 			'order'      => 'ASC',
 			'orderby'    => 'menu_order ID',
 			'id'         => $post ? $post->ID : 0,
-			'itemtag'    => $html5 ? 'figure'     : 'dl',
-			'icontag'    => $html5 ? 'div'        : 'dt',
+			'itemtag'    => $html5 ? 'figure' : 'dl',
+			'icontag'    => $html5 ? 'div' : 'dt',
 			'captiontag' => $html5 ? 'figcaption' : 'dd',
 			'columns'    => 3,
 			'size'       => 'thumbnail',
 			'include'    => '',
 			'exclude'    => '',
 			'link'       => ''
-		), $attr, 'gallery'));
+		), $attr, 'gallery' ) );
 
-		$id = intval($id);
+		$id = intval( $id );
 		if ( 'RAND' == $order )
 			$orderby = 'none';
 
-		if ( !empty($include) ) {
-			$_attachments = get_posts( array('include' => $include, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+		if ( ! empty( $include ) ) {
+			$_attachments = get_posts( array(
+					'include'        => $include,
+					'post_status'    => 'inherit',
+					'post_type'      => 'attachment',
+					'post_mime_type' => 'image',
+					'order'          => $order,
+					'orderby'        => $orderby
+				) );
 
 			$attachments = array();
 			foreach ( $_attachments as $key => $val ) {
-				$attachments[$val->ID] = $_attachments[$key];
+				$attachments[ $val->ID ] = $_attachments[ $key ];
 			}
-		} elseif ( !empty($exclude) ) {
-			$attachments = get_children( array('post_parent' => $id, 'exclude' => $exclude, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+		} elseif ( ! empty( $exclude ) ) {
+			$attachments = get_children( array(
+					'post_parent'    => $id,
+					'exclude'        => $exclude,
+					'post_status'    => 'inherit',
+					'post_type'      => 'attachment',
+					'post_mime_type' => 'image',
+					'order'          => $order,
+					'orderby'        => $orderby
+				) );
 		} else {
-			$attachments = get_children( array('post_parent' => $id, 'post_status' => 'inherit', 'post_type' => 'attachment', 'post_mime_type' => 'image', 'order' => $order, 'orderby' => $orderby) );
+			$attachments = get_children( array(
+					'post_parent'    => $id,
+					'post_status'    => 'inherit',
+					'post_type'      => 'attachment',
+					'post_mime_type' => 'image',
+					'order'          => $order,
+					'orderby'        => $orderby
+				) );
 		}
 
-		if ( empty($attachments) )
+		if ( empty( $attachments ) )
 			return '';
 
 		if ( is_feed() ) {
 			$output = "\n";
 			foreach ( $attachments as $att_id => $attachment )
-				$output .= wp_get_attachment_link($att_id, $size, true) . "\n";
+				$output .= wp_get_attachment_link( $att_id, $size, true ) . "\n";
+
 			return $output;
 		}
 
-		$itemtag = tag_escape($itemtag);
-		$captiontag = tag_escape($captiontag);
-		$icontag = tag_escape($icontag);
+		$itemtag    = tag_escape( $itemtag );
+		$captiontag = tag_escape( $captiontag );
+		$icontag    = tag_escape( $icontag );
 		$valid_tags = wp_kses_allowed_html( 'post' );
 		if ( ! isset( $valid_tags[ $itemtag ] ) )
 			$itemtag = 'dl';
@@ -81,9 +107,9 @@ class GalleryShortcodeModification {
 		if ( ! isset( $valid_tags[ $icontag ] ) )
 			$icontag = 'dt';
 
-		$columns = intval($columns);
-		$itemwidth = $columns > 0 ? floor(100/$columns) : 100;
-		$float = is_rtl() ? 'right' : 'left';
+		$columns   = intval( $columns );
+		$itemwidth = $columns > 0 ? floor( 100 / $columns ) : 100;
+		$float     = is_rtl() ? 'right' : 'left';
 
 		$selector = "gallery-{$instance}";
 
@@ -120,7 +146,7 @@ class GalleryShortcodeModification {
 		</style>\n\t\t";
 		}
 
-		$size_class = sanitize_html_class( $size );
+		$size_class  = sanitize_html_class( $size );
 		$gallery_div = "<div id='$selector' class='gallery galleryid-{$id} gallery-columns-{$columns} gallery-size-{$size_class}'>";
 
 		/**
@@ -129,7 +155,7 @@ class GalleryShortcodeModification {
 		 * @since 2.5.0
 		 *
 		 * @param string $gallery_style Default gallery shortcode CSS styles.
-		 * @param string $gallery_div   Opening HTML div container for the gallery shortcode output.
+		 * @param string $gallery_div Opening HTML div container for the gallery shortcode output.
 		 */
 		$output = apply_filters( 'gallery_style', $gallery_style . $gallery_div );
 
@@ -141,9 +167,9 @@ class GalleryShortcodeModification {
 			//Add fancybox stuff
 			$fancybox_markup = sprintf( ' data-lumi-fancybox="true" rel="lumi-fancybox-gallery-%s"',
 				$instance );
-			$image_output = preg_replace( '/((?:.+)?<a\shref=[\'"].+?[\'"])((?:.+)?)/', '$1' . $fancybox_markup . '$2', $image_output );
+			$image_output    = preg_replace( '/((?:.+)?<a\shref=[\'"].+?[\'"])((?:.+)?)/', '$1' . $fancybox_markup . '$2', $image_output );
 
-			$image_meta  = wp_get_attachment_metadata( $id );
+			$image_meta = wp_get_attachment_metadata( $id );
 
 			$orientation = '';
 			if ( isset( $image_meta['height'], $image_meta['width'] ) )
@@ -154,10 +180,10 @@ class GalleryShortcodeModification {
 			<{$icontag} class='gallery-icon {$orientation}'>
 				$image_output
 			</{$icontag}>";
-			if ( $captiontag && trim($attachment->post_excerpt) ) {
+			if ( $captiontag && trim( $attachment->post_excerpt ) ) {
 				$output .= "
 				<{$captiontag} class='wp-caption-text gallery-caption'>
-				" . wptexturize($attachment->post_excerpt) . "
+				" . wptexturize( $attachment->post_excerpt ) . "
 				</{$captiontag}>";
 			}
 			$output .= "</{$itemtag}>";
