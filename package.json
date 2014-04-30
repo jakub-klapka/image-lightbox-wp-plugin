@@ -6,6 +6,7 @@
     "grunt-closure-tools": "~0.9.6",
     "grunt-contrib-concat": "~0.4.0",
     "grunt-contrib-cssmin": "~0.9.0",
-    "grunt-contrib-imagemin": "~0.6.1"
+    "grunt-contrib-imagemin": "~0.6.1",
+    "grunt-contrib-compress": "~0.8.0"
   }
 }

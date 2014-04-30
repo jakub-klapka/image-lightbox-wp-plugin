@@ -40,6 +40,29 @@ module.exports = function(grunt) {
 				}]
 			}
 		},
+		compress: {
+			build_plugin: {
+				options: {
+					archive: 'lumi-image-fancybox.zip'
+				},
+				files: [{
+					expand: true,
+					cwd: '../',
+					dot: true,
+					src: [
+						'lumi-image-fancybox/**',
+						'!lumi-image-fancybox/.git/**',
+						'!lumi-image-fancybox/node_modules/**',
+						'!lumi-image-fancybox/.gitignore',
+						'!lumi-image-fancybox/Gruntfile.js',
+						'!lumi-image-fancybox/package.json',
+						'!lumi-image-fancybox/README.md',
+						'!lumi-image-fancybox/lumi-image-fancybox.zip',
+					]
+
+				}]
+			}
+		}
 
 	});
 
@@ -48,11 +71,13 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-imagemin');
+	grunt.loadNpmTasks('grunt-contrib-compress');
 
 	//helpers
 	grunt.registerTask('lumi_fancybox', ['concat:lumi_fancybox','closureCompiler:lumi_fancybox']);
 
 	// Default task(s).
 	grunt.registerTask('default', ['lumi_fancybox', 'cssmin', 'imagemin']);
+	grunt.registerTask('build_plugin', ['compress:build_plugin']);
 
 };

@@ -32,7 +32,7 @@ Notes
 
  - Plugin won't affect existing single images in pages and posts, but It will affect all galleries if you leave plugins gallery feature enabled!
  - If your theme or another plugin completely rewrite `[gallery]` output via `post_gallery` filter, this plugin won't work for galleries. Using `use_default_gallery_style` and `gallery_style` filters to change styles should be safe though.
-
+ - All source codes including Grunt tasks are on [Github](https://github.com/jakub-klapka/image-lightbox-wp-plugin)
 
 == Installation ==
 
