@@ -1,4 +1,4 @@
-=== Plugin Name ===
+=== Lumiart's Dev Friendly Lightboxed Images ===
 Contributors: lapak
 Tags: image gallery lightbox fancybox developers
 Requires at least: 3.5
