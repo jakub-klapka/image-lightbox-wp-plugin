@@ -1,5 +1,15 @@
-Lumiart's Dev Friendly Lightboxed Images
-===
+=== Plugin Name ===
+Contributors: lapak
+Tags: image gallery lightbox fancybox developers
+Requires at least: 3.5
+Tested up to: 3.9
+Stable tag: trunk
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+This plugin offers another way, how to insert images, which opens in lightbox. It's focused primarily on theme developers and speed.
+
+== Description ==
 
 This plugin offers another way, how to insert images into your posts, which opens in lightbox.
 It's focused primarily on theme developers (thus tons of configuration via filters) and speed.
@@ -11,13 +21,42 @@ What does it do?
 
  - New `Lightbox` checkbox in Add Media dialog to insert image opened in lightbox.
  - Supports also WP-generated galleries (`[gallery]`)
- - Based on great [Fancybox](http://fancyapps.com/fancybox/) library by Jānis Skarnelis
+ - Based on great [Fancybox](http://fancyapps.com/fancybox/) library by Jānis Skarnelis, which is licensed under (CC BY-NC 3.0)[http://creativecommons.org/licenses/by-nc/3.0/]
  - Frontend files are loaded only, when they are necessary (no more thousand-script headers on frontend)
  - Also various PHP files are loaded only when they are needed (to save server memory)
  - Plugin is very simple but still highly configurable via filters (no settings in DB - perfect for theme devs)
 
-Filters
+
+Notes
 ---
+
+ - Plugin won't affect existing single images in pages and posts, but It will affect all galleries if you leave plugins gallery feature enabled!
+ - If your theme or another plugin completely rewrite `[gallery]` output via `post_gallery` filter, this plugin won't work for galleries. Using `use_default_gallery_style` and `gallery_style` filters to change styles should be safe though.
+
+
+== Installation ==
+
+1. Unzip archive contents into your wp-content/plugins
+1. Activate plugin
+
+ - Or use WP plugin manager to install it
+
+
+== Screenshots ==
+
+Will be added soon.
+
+== Changelog ==
+
+= 1.0 =
+* Initial version
+
+
+== Developers ==
+
+Plugin developement continues on [Github](https://github.com/jakub-klapka/image-lightbox-wp-plugin), feel free to contribute there.
+
+Plugin is ment to be configured primarily via filters:
 
 ###lumi-image-fancybox/enable_gallery
 
@@ -84,10 +123,3 @@ If you want to modify Lightbox behavior on frontend, you can pass array of param
         );
     } );
 
----
-
-Notes
----
-
- - Plugin won't affect existing single images in pages and posts, but It will affect all galleries if you leave plugins gallery feature enabled!
- - If your theme or another plugin completely rewrite `[gallery]` output via `post_gallery` filter, this plugin won't work for galleries. Using `use_default_gallery_style` and `gallery_style` filters to change styles should be safe though.

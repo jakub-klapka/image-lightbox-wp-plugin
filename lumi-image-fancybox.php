@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Lumiart's Image to Lightbox (Fancybox) solution
- * Description: Developers-friendly solution for user-friendly image to lightbox functionality in editor. Support both inserting images and galleries as well.
- * Version: 0.9
+ * Plugin Name: Lumiart's Dev Friendly Lightboxed Images
+ * Description: Developers-friendly solution for user-friendly image to lightbox functionality in editor. Support both inserting images and galleries into posts and pages.
+ * Version: 1.0
  * Author: Jakub Klapka
  * Author URI: http://www.lumiart.cz
  * License: GPL2
