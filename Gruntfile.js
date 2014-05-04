@@ -58,6 +58,7 @@ module.exports = function(grunt) {
 						'!lumi-image-fancybox/package.json',
 						'!lumi-image-fancybox/README.md',
 						'!lumi-image-fancybox/lumi-image-fancybox.zip',
+						'!lumi-image-fancybox/src/lumi-image-fancybox_screen1.png',
 					]
 
 				}]
